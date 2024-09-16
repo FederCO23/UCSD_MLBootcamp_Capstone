@@ -4,7 +4,7 @@ This repository is currently under construction and contains submissions related
 
 ## Index
 
-- [Step 2 - Collect Your Data]((./2-EDA)
+- [Step 2 - Collect Your Data](./2-EDA)
 
 ---
 
