@@ -32,7 +32,7 @@ I have created two subfolders containing images from both sources. These images 
 
 To illustrate the image extraction, here’s a sample visualized using QGIS software:
 
-<img src="./sup_images/2024-09-15 10_40_29-_compare_BDC-GEE_extraction — QGIS.png" align="center" width="64" />
+<img src="./sup_images/2024-09-15 10_40_29-_compare_BDC-GEE_extraction — QGIS.png" align="center" width="512" />
 
 
 ## Requirements
