@@ -6,13 +6,13 @@ This repository contains the objectives for the **Step 2 – Collect Your Data**
 
 The two main data sources used for this project are:
 
-### 1. [Brazil Data Cube](https://data.inpe.br/bdc/web/en/home-page-2/)
-![Brazil Data Cube](add-link-to-external-image)
+### 1. [Brazil Data Cube](https://data.inpe.br/bdc/web/en/home-page-2/) 
+<img src="./sup_images/logo-bdc.png" align="right" width="64" />
 
 Brazil Data Cube is a research, development, and technological innovation project of the National Institute for Space Research (INPE), Brazil. It produces data sets from large volumes of medium-resolution remote sensing images for the entire national territory. The project also develops a computational platform to process and analyze these data sets using artificial intelligence, machine learning, and image time series analysis.
 
 ### 2. [Google Earth Engine](https://earthengine.google.com/)
-![Google Earth Engine](add-link-to-external-image)
+<img src="./sup_images/logo-gee.png" align="right" width="64" />
 
 Google Earth Engine combines a multi-petabyte catalog of satellite imagery and geospatial datasets with planetary-scale analysis capabilities. It is widely used by scientists, researchers, and developers to detect changes, map trends, and quantify differences on the Earth's surface. While it is available for commercial use, it remains free for academic and research purposes.
 
