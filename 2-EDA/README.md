@@ -27,12 +27,12 @@ For accessing the data from both platforms, I have prepared two Jupyter notebook
 
 I have created two subfolders containing images from both sources. These images are in the GEO TIFF format and require specific software, such as QGIS, to be visualized.
 
-- [Brazil Data Cube Images](link-to-folder-1)
-- [Google Earth Engine Images](link-to-folder-2)
+- [Brazil Data Cube Images](./BDC_images/)
+- [Google Earth Engine Images](./GEE_images/)
 
 To illustrate the image extraction, here’s a sample visualized using QGIS software:
 
-![Sample QGIS Visualization](link-to-visualized-image)
+![Sample QGIS Visualization](./sup_images/2024-09-15 10_40_29-_compare_BDC-GEE_extraction — QGIS.pnglink-to-visualized-image)
 
 ## Requirements
 
