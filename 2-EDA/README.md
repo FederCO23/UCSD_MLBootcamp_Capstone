@@ -20,7 +20,7 @@ Google Earth Engine combines a multi-petabyte catalog of satellite imagery and g
 
 For accessing the data from both platforms, I have prepared two Jupyter notebooks, which also include an initial Exploratory Data Analysis (EDA) over the available images:
 
-- [Notebook 1 - Brazil Data Cube Data Access](./BDC_EDA.ipynb)
+- [Notebook 1 - Brazil Data Cube Data Access](https://drive.google.com/drive/folders/1lg493XvS7nrm1Jowp3T_FNFsMjbXZz5e?usp=drive_link)
 - [Notebook 2 - Google Earth Engine Data Access](./GEE_EDA.ipynb)
 
 ## Image Data
