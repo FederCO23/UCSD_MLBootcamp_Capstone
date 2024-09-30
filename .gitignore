@@ -1,0 +1,6 @@
+# Ignore Capstone/Step2-EDA files
+/2-EDA/.ipynb_checkpoints/
+/2-EDA/refs/
+/2-EDA/compare_BDC-GEE_extraction.qgz
+
+
