@@ -45,4 +45,8 @@ We have also included the libraries and scripts used to perform the batch tasks:
 - [createMasks_script.py](./createMasks_script.py)
   This script generates initial automatic binary masks for each `.tif` image in the dataset.
   
-  
+## Data
+
+This folder contains the generated data set:
+
+--> [link to the Data](https://drive.google.com/drive/folders/1F5sMzaN9w8H9CAqDXCyqiVYR6RTYHNeP?usp=sharing)
