@@ -24,5 +24,6 @@ The creation of these models is presented in the following Jupyter Notebook:
 ## Results
 These are the resulting metrics for each one of the model:
 
-<img src="./sup_images/2024-09-15 10_40_29-_compare_BDC-GEE_extraction — QGIS.png" align="center" width="512" />
+<img src="./sup_images/compareBaselineModels.png" align="center" width="512" />
+
 
