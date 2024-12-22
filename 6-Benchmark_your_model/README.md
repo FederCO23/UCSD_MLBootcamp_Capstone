@@ -1,4 +1,4 @@
-# Step 6: Benchmark Your Model
+# Step 6: Benchmark
 
 This repository contains the steps and scripts used to define reference Baseline Models, which are simple and minimalist machine learning models that serve as starting points for solving a particular task. Baseline models provide reference points to evaluate the performance of more complex models.
 
