@@ -23,7 +23,7 @@ The creation and evaluation of these models are presented in the following Jupyt
 ## Results
 The metrics for each baseline model are summarized below:
 
-<img src="./sup_images/compareBaselineModels.png" align="center" width="512" />
+<img src="./sup_images/compareBaselineModels.png" align="center" width="4096" />
 
 
 
