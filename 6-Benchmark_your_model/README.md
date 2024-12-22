@@ -1,7 +1,6 @@
 # Step 6: Benchmark Your Model
 
-This repository contains the steps and scripts used to define the reference Baseline Models, which are simple and often minimalist machine learning models that serve as a starting point for solving a particular task. The baseline model will provide a reference point to evaluate the performance of more complex models.
-
+This repository contains the steps and scripts used to define reference Baseline Models, which are simple and minimalist machine learning models that serve as starting points for solving a particular task. Baseline models provide reference points to evaluate the performance of more complex models.
 
 ## Baseline Models
 
@@ -16,14 +15,16 @@ To establish a benchmark for evaluating the performance of more complex models, 
 
 ## Jupyter Notebooks
 
-The creation of these models is presented in the following Jupyter Notebook:
+The creation and evaluation of these models are presented in the following Jupyter Notebook:
 
 - [Benchmark](./Benchmark.ipynb) 
   
 
 ## Results
-These are the resulting metrics for each one of the model:
+The metrics for each baseline model are summarized below:
 
 <img src="./sup_images/compareBaselineModels.png" align="center" width="512" />
+
+
 
 
