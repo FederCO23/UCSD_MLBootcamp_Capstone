@@ -9,6 +9,7 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import time
 from torch.amp import autocast, GradScaler
 from torchmetrics import JaccardIndex
+import seaborn as sns
 
 def plot_loss_and_metrics(train_losses, train_ious, valid_losses, valid_ious, test_losses=None, test_ious=None):
     """
@@ -192,7 +193,7 @@ def display_confusion_matrix_with_metrics_and_distributions(cm, pos_probs, neg_p
     axes[1].legend()
     
 
-def train_loop(model, train_loader, valid_loader, test_loader, optimizer, loss, model_filename='./models/default.pth', device='cpu', ):
+def train_loop(model, train_loader, valid_loader, test_loader, optimizer, loss, scheduler, early_stopping_patience=10, early_stopping_min_delta=0.0001, model_filename='./models/default.pth', device='cpu', ):
 
     train_losses = []
     valid_losses = []
@@ -210,7 +211,7 @@ def train_loop(model, train_loader, valid_loader, test_loader, optimizer, loss, 
     max_score = float('inf')  # Initialize with a high value to store the best validation loss
 
     # Initialize early stopping
-    early_stopping = EarlyStopping(patience=20, min_delta=0.0001) 
+    early_stopping = EarlyStopping(patience=early_stopping_patience, min_delta=early_stopping_min_delta) 
 
     # Ensure Model is on the Correct Device
     model = model.to(device)
