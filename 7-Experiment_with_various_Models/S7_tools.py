@@ -4,12 +4,14 @@
 
 import matplotlib.pyplot as plt
 import torch
+import torch.nn as nn
 import numpy as np
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import time
 from torch.amp import autocast, GradScaler
 from torchmetrics import JaccardIndex
 import seaborn as sns
+from sklearn.metrics import jaccard_score
 
 def plot_loss_and_metrics(train_losses, train_ious, valid_losses, valid_ious, test_losses=None, test_ious=None):
     """
@@ -492,3 +494,84 @@ def test_one_epoch(model, dataloader, loss_fn, device, threshold=0.5, discard_al
     #print(f"0s_masks/Tot_imgs: {nb_blank}/{nb_tot_img} \t|| Test Loss:  {avg_loss:.6f} | Test IoU: {avg_iou:.3f}")
     print(f"Discard 0s? {discard_allbkgnd}\t| 0s_masks/Tot_imgs: {nb_blank}/{nb_tot_img} \t|| Test Loss: {avg_loss:.6f} | Test IoU: {avg_iou:.3f}")
     return avg_loss, avg_iou
+    
+    
+class WeightedBCELoss(nn.Module):
+    def __init__(self, pos_weight=1.0, neg_weight=1.0):
+        super(WeightedBCELoss, self).__init__()
+        self.pos_weight = pos_weight  # Weight for positive class
+        self.neg_weight = neg_weight  # Weight for negative class
+
+    def forward(self, inputs, targets):
+        # print(f"weights: pos {self.pos_weight} neg {self.neg_weight}") # debugging
+        # Weighted BCE computation
+        loss = -self.pos_weight * targets * torch.log(inputs + 1e-7) - \
+               self.neg_weight * (1 - targets) * torch.log(1 - inputs + 1e-7)
+        return loss.mean()
+        
+
+class BCEFocalNegativeIoULoss(nn.Module):
+    def __init__(self, alpha=0.8, gamma=1.5, pos_weight=2.0, neg_weight=1.0):
+        """
+        Args:
+            alpha: Weight for Focal Loss.
+            gamma: Modulating factor for Focal Loss.
+            pos_weight: Weight for positive class in BCE Loss.
+            neg_weight: Weight for negative class in BCE Loss.
+        """
+        super(BCEFocalNegativeIoULoss, self).__init__()
+        self.bce = WeightedBCELoss(pos_weight=pos_weight, neg_weight=neg_weight)
+        self.alpha = alpha
+        self.gamma = gamma
+
+    def focal_loss(self, inputs, targets):
+        BCE_loss = -targets * torch.log(inputs + 1e-7) - (1 - targets) * torch.log(1 - inputs + 1e-7)
+        #pt = torch.exp(-BCE_loss)  # Probability of the true class
+        pt = inputs * targets + (1 - inputs) * (1 - targets)
+        F_loss = self.alpha * (1 - pt) ** self.gamma * BCE_loss
+        return F_loss.mean()
+
+    def forward(self, inputs, targets):
+        if targets.sum() == 0:  # Skip blank masks
+            return torch.tensor(0.0, requires_grad=True).to(inputs.device)
+
+        # Core loss components
+        bce_loss = self.bce(inputs, targets)
+        focal_loss = self.focal_loss(inputs, targets)
+
+        # Compute IoU for positive and negative classes
+        #preds = inputs.sigmoid()  # Apply sigmoid activation
+        preds = inputs
+        #preds = model(inputs)  # No need to apply sigmoid again if already applied in the model
+        iou_positive, mean_iou = compute_class_aware_iou(preds, targets)
+
+        # Jaccard Loss for Positive and Negative IoU
+        jaccard_loss_positive = 1.0 - iou_positive  # Positive IoU
+        jaccard_loss_negative = 1.0 - (2 * mean_iou - iou_positive)  # Derive Negative IoU
+
+        # Weighted Jaccard Loss
+        jaccard_loss = 0.85 * jaccard_loss_positive + 0.15 * jaccard_loss_negative
+
+        # Combine all losses
+        total_loss = 0.3 * bce_loss + 0.3 * focal_loss + 0.4 * jaccard_loss
+        return total_loss
+
+
+def compute_class_aware_iou(preds, masks, threshold=0.5):
+    """
+    Compute IoU for positive and negative classes with a dynamic threshold.
+    """
+    # Apply threshold to predictions
+    preds = (preds > threshold).int()
+    masks = masks.int()
+
+    preds_np = preds.cpu().numpy().reshape(-1)
+    masks_np = masks.cpu().numpy().reshape(-1)
+
+    # Compute IoU for positive and negative classes
+    iou_positive = jaccard_score(masks_np, preds_np, pos_label=1)
+    iou_negative = jaccard_score(masks_np, preds_np, pos_label=0)
+
+    # Mean IoU
+    mean_iou = (iou_positive + iou_negative) / 2
+    return iou_positive, mean_iou
