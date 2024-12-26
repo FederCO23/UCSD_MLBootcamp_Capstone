@@ -8,6 +8,7 @@ This repository is currently under construction and contains submissions related
 - [Step 4 - Survey Existing Research and Reproduce Available Solutions](./4-Survey_Existing_Research)
 - [Step 5 - Data Wrangling & Exploration](./5-Data_Wrangling)
 - [Step 6 - Benchmark](./6-Benchmark_your_model)
+- [Step 7 - Experiment With Various Models](./7-Experiment_with_various_Models)
 
 ---
 
