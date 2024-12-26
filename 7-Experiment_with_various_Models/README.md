@@ -8,6 +8,14 @@ The performance of the tested models is summarized in the following table:
 
 <img src="./sup_images/results.png" align="center" width="2048" />
 
+### Further Improvements
+
+After identifying the best-performing model (U-Net), we applied Data Augmentation and Bicubic Interpolation (2x), which resulted in additional performance improvements:
+
+<img src="./sup_images/results_part2.png" align="center" width="2048" />
+
+---
+
 ## Repository Contents
 
 ### 1. Main Jupyter Notebooks
