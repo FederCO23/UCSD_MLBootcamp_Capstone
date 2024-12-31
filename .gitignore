@@ -12,7 +12,19 @@
 /5-Data_Wrangling/etc_and_tools/
 /5-Data_Wrangling/data_split1/
 /5-Data_Wrangling/data_split2/
+/5-Data_Wrangling/data_split2sr/
 /5-Data_Wrangling/data_split1_BKP_25.10.24/
+/5-Data_Wrangling/data_split2esr/
 
 /5b-Run_a_Model/
+
+/6-Benchmark_your_model/.ipynb_checkpoints/
+/6-Benchmark_your_model/__pycache__/
+
+/7-Experiment_with_various_Models/*.pth
+
+/7-Experiment_with_various_Models/.ipynb_checkpoints/
+/7-Experiment_with_various_Models/__pycache__/
+/7-Experiment_with_various_Models/models/
+/7-Experiment_with_various_Models/RelevantModels/
 
