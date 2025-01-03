@@ -511,7 +511,7 @@ class WeightedBCELoss(nn.Module):
         
 
 class BCEFocalNegativeIoULoss(nn.Module):
-    def __init__(self, alpha=0.8, gamma=1.5, pos_weight=2.0, neg_weight=1.0):
+    def __init__(self, alpha=0.8, gamma=1.5, pos_weight=2.0, neg_weight=1.0, jaccard_loss_pos_weight = 0.85, jaccard_loss_neg_weight = 0.15):
         """
         Args:
             alpha: Weight for Focal Loss.
@@ -523,6 +523,8 @@ class BCEFocalNegativeIoULoss(nn.Module):
         self.bce = WeightedBCELoss(pos_weight=pos_weight, neg_weight=neg_weight)
         self.alpha = alpha
         self.gamma = gamma
+        self.jaccard_loss_pos_weight = jaccard_loss_pos_weight
+        self.jaccard_loss_neg_weight = jaccard_loss_neg_weight
 
     def focal_loss(self, inputs, targets):
         BCE_loss = -targets * torch.log(inputs + 1e-7) - (1 - targets) * torch.log(1 - inputs + 1e-7)
@@ -550,7 +552,8 @@ class BCEFocalNegativeIoULoss(nn.Module):
         jaccard_loss_negative = 1.0 - (2 * mean_iou - iou_positive)  # Derive Negative IoU
 
         # Weighted Jaccard Loss
-        jaccard_loss = 0.85 * jaccard_loss_positive + 0.15 * jaccard_loss_negative
+        #jaccard_loss = 0.85 * jaccard_loss_positive + 0.15 * jaccard_loss_negative
+        jaccard_loss = self.jaccard_loss_pos_weight * jaccard_loss_positive + self.jaccard_loss_neg_weight * jaccard_loss_negative
 
         # Combine all losses
         total_loss = 0.3 * bce_loss + 0.3 * focal_loss + 0.4 * jaccard_loss
