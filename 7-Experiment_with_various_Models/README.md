@@ -34,21 +34,22 @@ We extracted a PV plant from the sample images at different resolutions to obser
 
 - [part 1](./PVdetect-modelSelection.ipynb) 
     This notebook demonstrates the initial development of five models, covering:
-		-Data preparation.
-		-Model hyperparameter configuration.
-		-Training and evaluation of the models.
+	
+	* Data preparation.
+	* Model hyperparameter configuration.
+	* Training and evaluation of the models.
 	
 - [part 2](./PVdetect-modelSelection_part2.ipynb) 
     A continuation of the first notebook, focusing on additional experiments, including:
 	
-		-Data augmentation techniques.
-		-Detailed analysis of model performance.
+	* Data augmentation techniques.
+	* Detailed analysis of model performance.
 		
 - [part 3](./PVdetect-modelSelection_part3.ipynb) 
     This notebooks presents the results of Experiencing with Super Resolution images
 	
-		-Data augmentation techniques.
-		-Detailed analysis of model performance.
+	* Data augmentation techniques.
+	* Detailed analysis of model performance.
 		
 
 ### 2. Model Tuning Log
@@ -56,9 +57,9 @@ We extracted a PV plant from the sample images at different resolutions to obser
 - [history logs](./modelTuning_logs.pdf)
     A document describing the iterative model tuning process. It includes:
 	
-		-Insights into hyperparameter adjustments (learning rates, batch sizes, loss functions).
-		-Performance metrics across various configurations.
-		-Strategies for addressing class imbalance and overfitting.
+	* Insights into hyperparameter adjustments (learning rates, batch sizes, loss functions).
+	* Performance metrics across various configurations.
+	* Strategies for addressing class imbalance and overfitting.
 		
     This document serves as a reference for understanding the trade-offs and impacts of different parameter settings.
 
@@ -67,10 +68,10 @@ We extracted a PV plant from the sample images at different resolutions to obser
 - [tools lib](./S7_tools.py)
     A Python module containing utility functions and custom classes used throughout the project. Key functionalities include:
 	
-		-Training and validation loops.
-		-Visualization of loss and IoU metrics over epochs.
-		-Custom loss functions (weighted BCE and Focal loss).
-		-Confusion matrix computation and visualization.
+	* Training and validation loops.
+	* Visualization of loss and IoU metrics over epochs.
+	* Custom loss functions (weighted BCE and Focal loss).
+	* Confusion matrix computation and visualization.
 			
 			
 			
