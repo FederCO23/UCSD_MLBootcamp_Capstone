@@ -21,6 +21,7 @@ We experienced with Super Resolution over the samples with the model Real-ESRGAN
 <img src="./sup_images/results_part3.png" align="center" width="2048" />
 
 We extracted a PV plant from the sample images at different resolutions to observe the differences in detail and pixel sizes:
+
 <img src="./sup_images/comp_res.png" align="center" width="2048" />
 ---
 
