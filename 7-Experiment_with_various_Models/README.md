@@ -14,6 +14,14 @@ After identifying the best-performing model (U-Net), we applied Data Augmentatio
 
 <img src="./sup_images/results_part2.png" align="center" width="2048" />
 
+### Experiencing with Super Resolution
+
+We experienced with Super Resolution over the samples with the model Real-ESRGAN (Credits to: [Xintao](https://github.com/xinntao/Real-ESRGAN)) with x2 and x4 upscaling. These are the obtained results:
+
+<img src="./sup_images/results_part3.png" align="center" width="2048" />
+
+We extracted a PV plant from the sample images at different resolutions to observe the differences in detail and pixel sizes:
+<img src="./sup_images/comp_res.png" align="center" width="2048" />
 ---
 
 ## Repository Contents
@@ -30,6 +38,12 @@ After identifying the best-performing model (U-Net), we applied Data Augmentatio
     A continuation of the first notebook, focusing on additional experiments, including:
 		- Data augmentation techniques.
 		- Detailed analysis of model performance.
+		
+- [part 3](./PVdetect-modelSelection_part3.ipynb) 
+    This notebooks presents the results of Experiencing with Super Resolution images
+		- Data augmentation techniques.
+		- Detailed analysis of model performance.
+		
 
 ### 2. Model Tuning Log
 
