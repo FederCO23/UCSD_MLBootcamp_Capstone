@@ -34,22 +34,23 @@ The strategies detailed in the linked notebooks ensure that the model is not onl
 
 ### Efficient Data Handling
 
-Code Implementation: 
-* The `torch.utils.data.DataLoader` is configured to optimize the loading of training, validation and test datasets:
+- The `torch.utils.data.DataLoader` is configured to optimize the loading of training, validation and test datasets:
 
-
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=5, shuffle=True, num_workers=0)
+```python
+	train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=5, shuffle=True, num_workers=0)
 	valid_loader = torch.utils.data.DataLoader(val_dataset, batch_size=5, shuffle=False, num_workers=0)
 	test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=40, shuffle=False, num_workers=0)
+```
 
-* Custom transformations are applied to normalize images and masks while maintaining flexibility in dataset preprocessing:
+- Custom transformations are applied to normalize images and masks while maintaining flexibility in dataset preprocessing:
 
-
+```python
 	class ToTensor:
 		def __call__(self, image, mask):
 			image = torch.tensor(image, dtype=torch.float32).permute(2, 0, 1)
 			mask = torch.tensor(mask, dtype=torch.float32).unsqueeze(0)
 			return image, mask
+```
 			
 #### Upgrades:
 * the data loading is adapted for efficient batch processing and memory optimization.
@@ -62,12 +63,13 @@ Code Implementation:
 Code Implementation: 
 * The code dynamically selects the appropriate device (GPU or CPU) for computation, and setting the GPU as the *device* if available: 
 
-
+```python
 	DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+```
 
 * Mixed precision training is implemented using `torch.cuda.amp.autocast` and `GradScaler` to optimize memory usage and training speed:
 
-
+```python
 	with torch.cuda.amp.autocast(device_type='cuda', dtype=torch.float32):
 		preds = model(valid_images)
 		loss = loss_fn(preds, valid_masks)
@@ -76,6 +78,7 @@ Code Implementation:
 	scaler.scale(loss).backward()
 	scaler.step(optimizer)
 	scaler.update()
+```
 
 #### Upgrades:
 * Mix precision training reduces memory overhead and accelerates computation (GPU usage).
@@ -88,13 +91,14 @@ Code Implementation:
 Code Implementation: 
 * A custom loss function, `BCEFocalNegativeIoULoss`, addresses class imbalance by combining weighted BCE, Focal Loss, and Jaccard Loss: 
 
-
+```python
 	class BCEFocalNegativeIoULoss(nn.Module):
 		def forward(self, inputs, targets):
 			bce_loss = WeightedBCELoss(pos_weight=2.0, neg_weight=1.0)(inputs, targets)
 			focal_loss = self.focal_loss(inputs, targets)
 			jaccard_loss = 0.85 * jaccard_loss_positive + 0.15 * jaccard_loss_negative
 			return 0.3 * bce_loss + 0.3 * focal_loss + 0.4 * jaccard_loss
+```
 
 #### Upgrades:
 * Treat the dataset imbalance(e.g., ~97% negative class) and its implications for model training.
@@ -107,7 +111,7 @@ Code Implementation:
 Code Implementation: 
 * The code experiments with multiple segmentation models (U-Net, U-Net++, PSPNet, FPN) and uses pre-trained EfficientNet-b7 encoders:
 
-
+```python
 	model = smp.Unet(
 		encoder_name="efficientnet-b7",
 		encoder_weights="imagenet",
@@ -115,7 +119,7 @@ Code Implementation:
 		classes=1,
 		activation="sigmoid"
 	)
-
+```
 
 #### Upgrades:
 * Experiment with selecting well-performing, lighterweight architectures versus more complex ones.
@@ -127,17 +131,18 @@ Code Implementation:
 Code Implementation: 
 * Early stopping is implemented to halt trainig when validation loss stops improving: 
 
-
+```python
 	early_stopping = EarlyStopping(patience=20, min_delta=0.0001)
 	if early_stopping(valid_loss):
 		print(f"Stopping at epoch {epoch}")
 		break
+```
 
 * Dynamic learning rate adjustment ensures stable training:
 
-
+```python
 	scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
-
+```
 
 #### Upgrades:
 * Early stopping avoids overfitting and saves computational resources and time.
