@@ -1,6 +1,6 @@
 """
 Data_tools.py
-    Functions common for Data Wrangler
+    Common functions for Data Wrangler
 """
 
 
