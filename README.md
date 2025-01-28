@@ -1,6 +1,6 @@
 # Capstone Project
 
-This repository is currently under construction and contains submissions related to the Capstone Project for the UCSD Bootcamp.
+This repository is currently under construction 🚧👷 and contains submissions related to the Capstone Project for the **UCSD Machine Learning Bootcamp**.
 
 ## Index
 
