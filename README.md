@@ -37,7 +37,7 @@ Here are a few key points:
 We use open images from the Sentinel-2 program available at Brazil Data Cube, which is a research, development, and technological innovation project of the National Institute for Space Research (INPE), Brazil. It produces datasets from large volumes of medium-resolution remote sensing images for the entire national territory. The project also develops a computational platform to process and analyze these datasets using artificial intelligence, machine learning, and image time series analysis.
 
 ### B. Dataset Creation <img src="./img/qgis-logo.png" align="right" width="100" />
-We created a dataset from scratch with **272 images** coming from **16 photovoltaic plants** of various distributions, sizes, and surroundings, aiming for good generalization. To expand our samples, we captured multiple random scenes over each plant and applied **data augmentation** to improve regularization.
+We created a dataset from scratch with **272 images** coming from **16 photovoltaic plants** of various distributions, sizes, and surroundings, aiming for good generalization. To expand our samples, we captured multiple random scenes over each plant and applied **data augmentation** to reduce overfitting.
 
 | **Sets**    | **Number of Areas** | **Number of Images** |
 |-------------|---------------------|----------------------|
@@ -48,7 +48,7 @@ We created a dataset from scratch with **272 images** coming from **16 photovolt
 Labeling was performed using an ad-hoc “auto-mask” script, followed by manual edits in QGIS.
 
 ### C. Performance Achieved
-We achieved the following metrics: **IoU = 0.9462** and **F1-Score = 0.9723**, using a U-Net model pre-trained on ImageNet with an EfficientNet-B7 encoder. We also applied **bicubic interpolation** (2× scaling) to improve resolution.
+We achieved the following metrics: **IoU = 94.62%** and **F1-Score = 97.23%**, using a U-Net model pre-trained on ImageNet with an EfficientNet-B7 encoder. We also applied **bicubic interpolation** (2× scaling) to improve resolution.
 
 ### D. Use of Popular Tools and Libraries
 <p align="center">
