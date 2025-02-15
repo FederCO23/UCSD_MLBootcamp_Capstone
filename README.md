@@ -52,22 +52,22 @@ We achieved the following metrics: **IoU = 0.9462** and **F1-Score = 0.9723**, u
 
 ### D. Use of Popular Tools and Libraries
 <p align="center">
-  <img src="./img/python.jpg" alt="Python" width="80" />
-  <img src="./img/geopy.png" alt="geopy" width="80" />
-  <img src="./img/qgis-logo.png" alt="QGIS" width="120" />
-  <img src="./img/imageio.png" alt="imageio" width="80" />
-  <img src="./img/matplotlib.png" alt="Matplotlib" width="150" />
-  <img src="./img/numpy.png" alt="NumPy" width="120" />
-  <img src="./img/pillow.png" alt="Pillow" width="120" />
-  <img src="./img/pystac.png" alt="pystac" width="120" />
-  <img src="./img/rasterio.png" alt="rasterio" width="120" />
-  <img src="./img/seaborn.png" alt="Seaborn" width="150" />
-  <img src="./img/segmentation_models.png" alt="segmentation_models" width="200" />
+  <img src="./img/python.jpg" alt="Python" width="65" />
+  <img src="./img/geopy.png" alt="geopy" width="70" />
+  <img src="./img/qgis-logo.png" alt="QGIS" width="110" />
+  <img src="./img/imageio.png" alt="imageio" width="70" />
+  <img src="./img/matplotlib.png" alt="Matplotlib" width="135" />
+  <img src="./img/numpy.png" alt="NumPy" width="110" />
+  <img src="./img/pillow.png" alt="Pillow" width="110" />
+  <img src="./img/pystac.png" alt="pystac" width="110" />
+  <img src="./img/rasterio.png" alt="rasterio" width="110" />
+  <img src="./img/seaborn.png" alt="Seaborn" width="130" />
+  <img src="./img/segmentation_models.png" alt="segmentation_models" width="180" />
   <img src="./img/sklearn.png" alt="scikit-learn" width="80" />
-  <img src="./img/torchmetrics.png" alt="torchmetrics" width="170" />
-  <img src="./img/torchvision.png" alt="torchvision" width="80" />
-  <img src="./img/tqdm.png" alt="tqdm" width="80" />
-  <img src="./img/transformers.png" alt="Transformers" width="150" />
+  <img src="./img/torchmetrics.png" alt="torchmetrics" width="160" />
+  <img src="./img/torchvision.png" alt="torchvision" width="65" />
+  <img src="./img/tqdm.png" alt="tqdm" width="65" />
+  <img src="./img/transformers.png" alt="Transformers" width="140" />
 </p>
 
 ### E. Customized Loss Function
@@ -87,8 +87,8 @@ We also experimented with **Dice Loss**, but found the above combination to yiel
 <img src="./img/pred3.png" align="center" width="700" />
 <img src="./img/pred4.png" align="center" width="700" />
 <img src="./img/pred5.png" align="center" width="700" />
-<img src="./img/pred6.png" align="center" width="700" />
 <img src="./img/pred7.png" align="center" width="700" />
+<img src="./img/pred6.png" align="center" width="700" />
 
 ### G. Experiments with Image Enhancement
 We tested **bicubic interpolation** and **Enhanced Super Resolution GANs (ESRGAN)** as image-enhancement methods over the original dataset.
