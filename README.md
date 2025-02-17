@@ -100,8 +100,14 @@ We tested **bicubic interpolation** and **Enhanced Super Resolution GANs (ESRGAN
 ## 3. Structure
 Below is an overview of the repository and the steps in my process. Each folder contains notebooks, scripts, or related files for that phase:
 
+- **[Step 1 - Start Planning my Capstone](./1-Planning_my_Capstone/Step1_StartPlanning_my_Capstone_Project.pdf)**  
+  Define the possible project scopes and initial feasibility assessment based on research and mentor discussions.
+
 - **[Step 2 - Collect Your Data](./2-EDA)**  
   Basic Exploratory Data Analysis (EDA) and data collection strategies.
+
+- **[Step 3 - Project Proporsal](./3-Project_Proposal/Step3_ProjectProposal)**  
+  Formalize the project plan by outlining objectives, methodology, expected outcomes, and potential challenges.
 
 - **[Step 4 - Survey Existing Research and Reproduce Available Solutions](./4-Survey_Existing_Research)**  
   Literature review and attempts at reproducing known solutions.
