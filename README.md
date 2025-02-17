@@ -106,7 +106,7 @@ Below is an overview of the repository and the steps in my process. Each folder 
 - **[Step 2 - Collect Your Data](./2-EDA)**  
   Basic Exploratory Data Analysis (EDA) and data collection strategies.
 
-- **[Step 3 - Project Proporsal](./3-Project_Proposal/Step3_ProjectProposal)**  
+- **[Step 3 - Project Proporsal](./3-Project_Proposal/Step3_ProjectProposal.pdf)**  
   Formalize the project plan by outlining objectives, methodology, expected outcomes, and potential challenges.
 
 - **[Step 4 - Survey Existing Research and Reproduce Available Solutions](./4-Survey_Existing_Research)**  
