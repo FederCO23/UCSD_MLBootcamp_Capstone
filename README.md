@@ -88,6 +88,7 @@ We also experimented with **Dice Loss**, but found the above combination to yiel
 <img src="./img/pred4.png" align="center" width="700" />
 <img src="./img/pred5.png" align="center" width="700" />
 <img src="./img/pred7.png" align="center" width="700" />
+<img src="./img/pred8.png" align="center" width="700" />
 <img src="./img/pred6.png" align="center" width="700" />
 
 ### G. Experiments with Image Enhancement
@@ -124,7 +125,6 @@ Below is an overview of the repository and the steps in my process. Each folder 
 - **[Step 8 - Scale the ML Prototype](./8-Scaling_the_Prototype)**  
   Approaches for taking the model from proof-of-concept to production scale.
 
-> **Note**: You might notice missing steps (like Step 1 or Step 3) if they’re part of the broader Bootcamp curriculum but not included here yet. Check back soon for updates!
 
 ---
 
