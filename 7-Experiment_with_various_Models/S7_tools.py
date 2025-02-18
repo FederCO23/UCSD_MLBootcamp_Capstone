@@ -207,9 +207,6 @@ def train_loop(model, train_loader, valid_loader, test_loader, optimizer, loss, 
     # Force to include the test set loss and score metric into the training loop
     include_test=False
 
-    # Save the model's params: 
-    #model_filename='./models/unet_effb7.pth'
-
     max_score = float('inf')  # Initialize with a high value to store the best validation loss
 
     # Initialize early stopping
@@ -333,14 +330,6 @@ def train_one_epoch(model, dataloader, optimizer, scaler, loss_fn, device, disca
             preds = model(valid_images)
             loss = loss_fn(preds, valid_masks)
 
-        # # Mixed Precision Forward Pass
-        # with autocast('cuda'):
-        #     preds = model(valid_images)
-        #     loss = loss_fn(preds, valid_masks)
-
-        # # Forward pass
-        # preds = model(valid_images)
-        # loss = loss_fn(preds, valid_masks)
         epoch_loss += loss.item()
 
         
@@ -348,10 +337,6 @@ def train_one_epoch(model, dataloader, optimizer, scaler, loss_fn, device, disca
         scaler.scale(loss).backward()
         scaler.step(optimizer)
         scaler.update()
-
-        # Backward pass and optimization
-        # loss.backward()
-        # optimizer.step()
 
         # Calculate IoU for valid images
         total_iou += iou_metric(preds, valid_masks).item() * len(valid_mask_indices)
@@ -401,13 +386,6 @@ def validate_one_epoch(model, dataloader, loss_fn, device, threshold=0.5, discar
                 preds = model(valid_images)
                 loss = loss_fn(preds, valid_masks)
 
-            # # Mixed Precision Inference
-            # with autocast('cuda'):
-            #     preds = model(valid_images)
-            #     loss = loss_fn(preds, valid_masks)
-
-            # preds = model(valid_images)
-            # loss = loss_fn(preds, valid_masks)
             epoch_loss += loss.item()
 
             # Threshold predictions for metric computation
@@ -419,7 +397,6 @@ def validate_one_epoch(model, dataloader, loss_fn, device, threshold=0.5, discar
 
     avg_loss = epoch_loss / num_valid_images if num_valid_images > 0 else 0
     avg_iou = total_iou / num_valid_images if num_valid_images > 0 else 0
-    #print(f"0s_masks/Tot_imgs: {nb_blank}/{nb_tot_img} \t|| Valid Loss: {avg_loss:.6f} | Valid IoU: {avg_iou:.3f}")
     print(f"Discard 0s? {discard_allbkgnd}\t| 0s_masks/Tot_imgs: {nb_blank}/{nb_tot_img} \t|| Valid Loss: {avg_loss:.6f} | Valid IoU: {avg_iou:.3f}")
     return avg_loss, avg_iou
     
@@ -433,7 +410,6 @@ def test_one_epoch(model, dataloader, loss_fn, device, threshold=0.5, discard_al
     epoch_loss = 0
     total_iou = 0.0
     num_valid_images = 0
-    #num_batches = 0
     iou_metric = JaccardIndex(task='binary', threshold=threshold).to(device)
     nb_blank = 0
     nb_tot_img = 0
@@ -443,13 +419,7 @@ def test_one_epoch(model, dataloader, loss_fn, device, threshold=0.5, discard_al
         for images, masks in dataloader:
             images, masks = images.to(device), masks.to(device)
         
-                
-            # debugging
-            #print(f' deb: {j} masks.size(0) {masks.size(0)}')
-            #print(f' deb: {j} images.size(0) {masks.size(0)}')
-            
             valid_mask_indices = [i for i in range(masks.size(0)) if masks[i].sum() > 0]
-            #print(f' deb: {j} len(valid_mask_indices) {len(valid_mask_indices)}')
 
             # number of all-background images per batch
             nb_blank += masks.size(0) - len(valid_mask_indices)
@@ -468,18 +438,10 @@ def test_one_epoch(model, dataloader, loss_fn, device, threshold=0.5, discard_al
             valid_images = images[valid_mask_indices]
             valid_masks = masks[valid_mask_indices]
 
-            # # Mixed Precision Inference
-            # with autocast('cuda'):
-            #     preds = model(valid_images)
-            #     loss = loss_fn(preds, valid_masks)
-
             with autocast(device_type='cuda', dtype=torch.float32):  # Use float32 precision
                 preds = model(valid_images)
                 loss = loss_fn(preds, valid_masks)
 
-
-            # preds = model(valid_images)
-            # loss = loss_fn(preds, valid_masks)
             epoch_loss += loss.item()
 
             # Threshold predictions
@@ -491,7 +453,6 @@ def test_one_epoch(model, dataloader, loss_fn, device, threshold=0.5, discard_al
             
     avg_loss = epoch_loss / num_valid_images if num_valid_images > 0 else 0
     avg_iou = total_iou / num_valid_images if num_valid_images > 0 else 0
-    #print(f"0s_masks/Tot_imgs: {nb_blank}/{nb_tot_img} \t|| Test Loss:  {avg_loss:.6f} | Test IoU: {avg_iou:.3f}")
     print(f"Discard 0s? {discard_allbkgnd}\t| 0s_masks/Tot_imgs: {nb_blank}/{nb_tot_img} \t|| Test Loss: {avg_loss:.6f} | Test IoU: {avg_iou:.3f}")
     return avg_loss, avg_iou
     
@@ -503,7 +464,6 @@ class WeightedBCELoss(nn.Module):
         self.neg_weight = neg_weight  # Weight for negative class
 
     def forward(self, inputs, targets):
-        # print(f"weights: pos {self.pos_weight} neg {self.neg_weight}") # debugging
         # Weighted BCE computation
         loss = -self.pos_weight * targets * torch.log(inputs + 1e-7) - \
                self.neg_weight * (1 - targets) * torch.log(1 - inputs + 1e-7)
@@ -528,7 +488,6 @@ class BCEFocalNegativeIoULoss(nn.Module):
 
     def focal_loss(self, inputs, targets):
         BCE_loss = -targets * torch.log(inputs + 1e-7) - (1 - targets) * torch.log(1 - inputs + 1e-7)
-        #pt = torch.exp(-BCE_loss)  # Probability of the true class
         pt = inputs * targets + (1 - inputs) * (1 - targets)
         F_loss = self.alpha * (1 - pt) ** self.gamma * BCE_loss
         return F_loss.mean()
@@ -542,9 +501,7 @@ class BCEFocalNegativeIoULoss(nn.Module):
         focal_loss = self.focal_loss(inputs, targets)
 
         # Compute IoU for positive and negative classes
-        #preds = inputs.sigmoid()  # Apply sigmoid activation
         preds = inputs
-        #preds = model(inputs)  # No need to apply sigmoid again if already applied in the model
         iou_positive, mean_iou = compute_class_aware_iou(preds, targets)
 
         # Jaccard Loss for Positive and Negative IoU
@@ -552,7 +509,6 @@ class BCEFocalNegativeIoULoss(nn.Module):
         jaccard_loss_negative = 1.0 - (2 * mean_iou - iou_positive)  # Derive Negative IoU
 
         # Weighted Jaccard Loss
-        #jaccard_loss = 0.85 * jaccard_loss_positive + 0.15 * jaccard_loss_negative
         jaccard_loss = self.jaccard_loss_pos_weight * jaccard_loss_positive + self.jaccard_loss_neg_weight * jaccard_loss_negative
 
         # Combine all losses
