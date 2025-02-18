@@ -26,8 +26,7 @@ The steps outlined above are detailed in the following Jupyter Notebooks:
   Describes the process for extracting satellite images. 
   
 - [Create Mask](./CreateMask.ipynb)
-
-Details the creation of automatic and manual binary masks.
+  Details the creation of automatic and manual binary masks.
   
 - [Capture Windows Random Move](./CaptureWindow_random_move.ipynb)
   Presents the capture window technique and its results.

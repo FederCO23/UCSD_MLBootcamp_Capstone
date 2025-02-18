@@ -193,9 +193,6 @@ def createMask(file_name, threshold=1500):
         nir_meta = dataset.meta
         nodata_value = dataset.nodata
 
-    # Define the threshold value
-    #threshold = 1500  # Replace with your chosen threshold
-
     # Ensure nodata_value is a float
     nodata_value = float(nodata_value) if nodata_value is not None else -9999.0
 
