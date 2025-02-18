@@ -36,6 +36,8 @@ Here are a few key points:
 ### A. [Brazil Data Cube](https://data.inpe.br/bdc/web/en/home-page-2/) <img src="./2-EDA/sup_images/logo-bdc.png" align="right" width="64" />
 We use open images from the Sentinel-2 program available at Brazil Data Cube, which is a research, development, and technological innovation project of the National Institute for Space Research (INPE), Brazil. It produces datasets from large volumes of medium-resolution remote sensing images for the entire national territory. The project also develops a computational platform to process and analyze these datasets using artificial intelligence, machine learning, and image time series analysis.
 
+---
+
 ### B. Dataset Creation <img src="./img/qgis-logo.png" align="right" width="100" />
 We created a dataset from scratch with **272 images** coming from **16 photovoltaic plants** of various distributions, sizes, and surroundings, aiming for good generalization. To expand our samples, we captured multiple random scenes over each plant and applied **data augmentation** to reduce overfitting.
 
@@ -47,12 +49,48 @@ We created a dataset from scratch with **272 images** coming from **16 photovolt
 
 Labeling was performed using an ad-hoc “auto-mask” script, followed by manual edits in QGIS.
 
+---
+
 ### C. Performance Achieved
 We achieved the following metrics: **IoU = 94.62%** and **F1-Score = 97.23%**, using a U-Net model pre-trained on ImageNet with an EfficientNet-B7 encoder. We also applied **bicubic interpolation** (2× scaling) to improve resolution.
 
 <img src="./img/metric.png" align="center" width="700" />
 
-### D. Use of Popular Tools and Libraries
+---
+
+### D. Customized Loss Function
+We obtained our best results using a **weighted loss function** composed of:
+- **Binary Cross Entropy**
+- **Focal Loss**
+- **Jaccard Index**
+
+We also experimented with **Dice Loss**, but found the above combination to yield better performance overall.
+
+---
+
+### E. Resulting Images and Debugging Techniques
+<img src="./img/deb1.png" align="center" width="700" />
+
+#### More Predictions
+<img src="./img/pred1.png" align="center" width="700" />
+<img src="./img/pred2.png" align="center" width="700" />
+<img src="./img/pred3.png" align="center" width="700" />
+<img src="./img/pred4.png" align="center" width="700" />
+<img src="./img/pred5.png" align="center" width="700" />
+<img src="./img/pred7.png" align="center" width="700" />
+<img src="./img/pred8.png" align="center" width="700" />
+<img src="./img/pred6.png" align="center" width="700" />
+
+---
+
+### F. Experiments with Image Enhancement
+We tested **bicubic interpolation** and **Enhanced Super Resolution GANs (ESRGAN)** as image-enhancement methods over the original dataset.
+
+<img src="./7-Experiment_with_various_Models/sup_images/comp_res.png" align="center" width="700" />
+
+---
+
+### G. Use of Popular Tools and Libraries
 <p align="center">
   <img src="./img/python.jpg" alt="Python" width="52" />
   <img src="./img/geopy.png" alt="geopy" width="56" />
@@ -71,32 +109,6 @@ We achieved the following metrics: **IoU = 94.62%** and **F1-Score = 97.23%**, u
   <img src="./img/tqdm.png" alt="tqdm" width="52" />
   <img src="./img/transformers.png" alt="Transformers" width="112" />
 </p>
-
-### E. Customized Loss Function
-We obtained our best results using a **weighted loss function** composed of:
-- **Binary Cross Entropy**
-- **Focal Loss**
-- **Jaccard Index**
-
-We also experimented with **Dice Loss**, but found the above combination to yield better performance overall.
-
-### F. Resulting Images and Debugging Techniques
-<img src="./img/deb1.png" align="center" width="700" />
-
-#### More Predictions
-<img src="./img/pred1.png" align="center" width="700" />
-<img src="./img/pred2.png" align="center" width="700" />
-<img src="./img/pred3.png" align="center" width="700" />
-<img src="./img/pred4.png" align="center" width="700" />
-<img src="./img/pred5.png" align="center" width="700" />
-<img src="./img/pred7.png" align="center" width="700" />
-<img src="./img/pred8.png" align="center" width="700" />
-<img src="./img/pred6.png" align="center" width="700" />
-
-### G. Experiments with Image Enhancement
-We tested **bicubic interpolation** and **Enhanced Super Resolution GANs (ESRGAN)** as image-enhancement methods over the original dataset.
-
-<img src="./7-Experiment_with_various_Models/sup_images/comp_res.png" align="center" width="700" />
 
 ---
 
