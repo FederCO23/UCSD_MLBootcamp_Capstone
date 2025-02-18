@@ -50,24 +50,26 @@ Labeling was performed using an ad-hoc “auto-mask” script, followed by manua
 ### C. Performance Achieved
 We achieved the following metrics: **IoU = 94.62%** and **F1-Score = 97.23%**, using a U-Net model pre-trained on ImageNet with an EfficientNet-B7 encoder. We also applied **bicubic interpolation** (2× scaling) to improve resolution.
 
+<img src="./img/metric.png" align="center" width="700" />
+
 ### D. Use of Popular Tools and Libraries
 <p align="center">
-  <img src="./img/python.jpg" alt="Python" width="65" />
-  <img src="./img/geopy.png" alt="geopy" width="70" />
-  <img src="./img/qgis-logo.png" alt="QGIS" width="110" />
-  <img src="./img/imageio.png" alt="imageio" width="70" />
-  <img src="./img/matplotlib.png" alt="Matplotlib" width="135" />
-  <img src="./img/numpy.png" alt="NumPy" width="110" />
-  <img src="./img/pillow.png" alt="Pillow" width="110" />
-  <img src="./img/pystac.png" alt="pystac" width="110" />
-  <img src="./img/rasterio.png" alt="rasterio" width="110" />
-  <img src="./img/seaborn.png" alt="Seaborn" width="130" />
-  <img src="./img/segmentation_models.png" alt="segmentation_models" width="180" />
-  <img src="./img/sklearn.png" alt="scikit-learn" width="80" />
-  <img src="./img/torchmetrics.png" alt="torchmetrics" width="160" />
-  <img src="./img/torchvision.png" alt="torchvision" width="65" />
-  <img src="./img/tqdm.png" alt="tqdm" width="65" />
-  <img src="./img/transformers.png" alt="Transformers" width="140" />
+  <img src="./img/python.jpg" alt="Python" width="52" />
+  <img src="./img/geopy.png" alt="geopy" width="56" />
+  <img src="./img/qgis-logo.png" alt="QGIS" width="88" />
+  <img src="./img/imageio.png" alt="imageio" width="56" />
+  <img src="./img/matplotlib.png" alt="Matplotlib" width="108" />
+  <img src="./img/numpy.png" alt="NumPy" width="88" />
+  <img src="./img/pillow.png" alt="Pillow" width="88" />
+  <img src="./img/pystac.png" alt="pystac" width="88" />
+  <img src="./img/rasterio.png" alt="rasterio" width="88" />
+  <img src="./img/seaborn.png" alt="Seaborn" width="104" />
+  <img src="./img/segmentation_models.png" alt="segmentation_models" width="144" />
+  <img src="./img/sklearn.png" alt="scikit-learn" width="64" />
+  <img src="./img/torchmetrics.png" alt="torchmetrics" width="128" />
+  <img src="./img/torchvision.png" alt="torchvision" width="52" />
+  <img src="./img/tqdm.png" alt="tqdm" width="52" />
+  <img src="./img/transformers.png" alt="Transformers" width="112" />
 </p>
 
 ### E. Customized Loss Function
