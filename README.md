@@ -139,6 +139,8 @@ Below is an overview of the repository and the steps in my process. Each folder 
 - **[Step 8 - Scale the ML Prototype](./8-Scaling_the_Prototype)**  
   Approaches for taking the model from proof-of-concept to production scale.
 
+- **[Step 9 - AWS Deployment](https://github.com/FederCO23/AWS-ML_Satellite_Deployment)**
+  AWS-Based Deployment Implementation.
 
 ---
 
